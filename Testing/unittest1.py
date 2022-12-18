@@ -1,11 +1,14 @@
-# this is to test the client server
+# this is to test the clinet server
 
 import unittest
 import io
 import os
 import sys
-from socket_client import Client
+import socketserver
+import socket
 
+from socket_client import Client
+from mock import patch
 
 """
 To capture standard output by just temporarily redirecting to a StringIO object
@@ -35,17 +38,13 @@ class TestClient(unittest.TestCase):
         self.assertTrue("exit" in capturedOutput.getvalue())
     print ("TBC")
 
-
-    def test_dict(self):
-        # Class Under Test
-        tick = Client()
-        tick.dict()
-        self.assertTrue(len(tick.dict) == 0)
-       
-        tick.dict()
-        # make sure our dictionary is empty
-        self.assertTrue(len(tick.dict) == 0)
-    
+    # Check if dictionary exists          
+    @patch('dic3.exists')
+    @patch('dic3.makedirs')
+    def test_dict(self, dic3_dirs, dic3_exists):
+        dic3_exists.return_value = True
+        dic3_dirs('thing_to_create')
+        dic3_dirs.assert_called_with('thing_to_create') 
    
   
     def test_serialise_dict(self):
@@ -56,7 +55,7 @@ class TestClient(unittest.TestCase):
         self.assertTrue(os.path.exists("dict.json"))
 
 
-        #check if content of the files json is correct
+        #check if the file content json is correct
         capturedOutput = io.StringIO()  # Create StringIO object
         sys.stdout = capturedOutput  # and redirect stdout.
         with open('dict.json', 'r') as f:
@@ -69,4 +68,8 @@ class TestClient(unittest.TestCase):
 
         #cleanup files
         os.remove("dict.json")
+
+if __name__ == '_main_':
+    unittest.main()        
+    
     print ("test ran successfully")
