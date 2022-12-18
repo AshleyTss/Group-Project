@@ -16,8 +16,8 @@ The objective of this project is to create a simple client/server network to tra
 4. Open a new terminal and enter the command client.py, now the client/server connection is successful
 
 ## Group Members
-*
-*
-*
+* Sadiya Najeeb
+* Sheida Jamei
+* Oi Wing Tsang
 
-## Acknowledgement
+
