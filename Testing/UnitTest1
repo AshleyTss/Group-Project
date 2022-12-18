@@ -1,4 +1,4 @@
-# this is to test the clinet server
+# this is to test the client server
 
 import unittest
 import io
