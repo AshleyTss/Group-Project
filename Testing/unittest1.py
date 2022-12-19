@@ -60,3 +60,6 @@ class TestClient(unittest.TestCase):
         self.assertEqual(actual, expected, "pickling not successful")
         print("pickling checked")
 
+
+if __name__ == '__main__':
+    unittest.main()
