@@ -7,12 +7,6 @@ cffi==1.15.0
 charset-normalizer==2.0.9
 cryptography==36.0.1
 dict2xml==1.7.0
-docopt==0.6.2
-flake8==4.0.1
-hexdump==3.3
-idna==3.3
-jedi==0.18.1
-mccabe==0.6.1
 paramiko==2.8.1
 parso==0.8.2
 pep8==1.7.1
@@ -22,9 +16,3 @@ pycparser==2.21
 pyflakes==2.4.0
 PyNaCl==1.4.0
 requests==2.26.0
-six==1.16.0
-toml==0.10.2
-urllib3==1.26.7
-yarg==0.1.9
-
-
