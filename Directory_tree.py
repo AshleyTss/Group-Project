@@ -1,4 +1,4 @@
-pip install directory_tree
+#pip install directory_tree
 
 # Importing Libraries
 from directory_tree import display_tree
