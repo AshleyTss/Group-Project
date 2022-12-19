@@ -4,11 +4,12 @@ import unittest
 import io
 import os
 import sys
-import socketserver
+import unittest.mock
 import socket
 
-from socket_client import Client
-from mock import patch
+from unittest.mock import Mock
+
+#from socket_client import Client
 
 """
 To capture standard output by just temporarily redirecting to a StringIO object
@@ -38,13 +39,17 @@ class TestClient(unittest.TestCase):
         self.assertTrue("exit" in capturedOutput.getvalue())
     print ("TBC")
 
-    # Check if dictionary exists          
-    @patch('dic3.exists')
-    @patch('dic3.makedirs')
-    def test_dict(self, dic3_dirs, dic3_exists):
-        dic3_exists.return_value = True
-        dic3_dirs('thing_to_create')
-        dic3_dirs.assert_called_with('thing_to_create') 
+    # Check if dictionary exists
+    mock = Mock()
+   #from unittest.mock import patch
+   #from socket_client import dic3
+         
+    @unittest.mock.patch('dic3.exists')
+    @unittest.mock.patch('dic3.makedirs')
+    def test_dict(self, mock_dic_dirs, mock_dic_exists):
+        mock_dic_exists.return_value = True
+        mock_dic_dirs('thing_to_create')
+        mock_dic_dirs.assert_called_with('thing_to_create') 
    
   
     def test_serialise_dict(self):
@@ -72,4 +77,4 @@ class TestClient(unittest.TestCase):
 if __name__ == '_main_':
     unittest.main()        
     
-    print ("test ran successfully")
+print ("test ran successfully")
