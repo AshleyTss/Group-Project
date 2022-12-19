@@ -10,7 +10,7 @@ The objective of this project is to create a simple client/server network to tra
 * Unit test was performed
 
 ## Installation Guide
-1. Clone this project into IDE using the link
+1. Clone this project into IDE using the link https://github.com/AshleyTss/Group-Project.git
 2. Install the necessary packages from requirement.txt by running the command pip install -r requirements.txt in your terminal
 3. Execute the following commands socket_server.py for initiating the connection with client
 4. Open a new terminal and enter the command socket_client.py, now the client/server connection is successful
