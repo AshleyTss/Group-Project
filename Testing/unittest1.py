@@ -1,48 +1,20 @@
-# this is to test the clinet server
+# this is to test the clinet server and dycrpted file
 
 import unittest
-import io
-import os
 import sys
 import unittest.mock
-import socket
+
 
 from unittest.mock import Mock
-
-#from socket_client import Client
-
-"""
-To capture standard output by just temporarily redirecting to a StringIO object
-"""
 
 
 class TestClient(unittest.TestCase):
 
-    def test_help_list(self):
-        # Capture everything sent to the console
-        # Import StringIO from io and creat StringIO object
-        # and redirect stdout.
-        capturedOutput = io.StringIO()        
-        sys.stdout = capturedOutput  
-
-        #Class Under Test
-        tick = Client()
-        tick.help_list()
-        sys.stdout = sys.__stdout__  # Reset redirect.
-
-        # check if a particular string is present on the console (stdout)
-        self.assertTrue("dict" in capturedOutput.getvalue())
-        self.assertTrue("encrypt" in capturedOutput.getvalue())
-        self.assertTrue("decrypt" in capturedOutput.getvalue())
-        self.assertTrue("send-data" in capturedOutput.getvalue())
-        self.assertTrue("send-data-encrypted" in capturedOutput.getvalue())
-        self.assertTrue("exit" in capturedOutput.getvalue())
-    print ("TBC")
 
     # Check if dictionary exists
     mock = Mock()
-   #from unittest.mock import patch
-   #from socket_client import dic3
+    #from unittest.mock import patch
+    #from socket_client import dic3
          
     @unittest.mock.patch('dic3.exists')
     @unittest.mock.patch('dic3.makedirs')
@@ -50,31 +22,41 @@ class TestClient(unittest.TestCase):
         mock_dic_exists.return_value = True
         mock_dic_dirs('thing_to_create')
         mock_dic_dirs.assert_called_with('thing_to_create') 
-   
-  
-    def test_serialise_dict(self):
-        tick = Client()
-        tick.serialise_dict('JSON')
-  
-        #check if files exists
-        self.assertTrue(os.path.exists("dict.json"))
+    print("TBC")
 
+    # test the enrypted original file    
+    # actual = encrypt_data(original)
+    # expected = 'encrypted_text!'
+    #     self.assertEqual(actual, expected)
 
-        #check if the file content json is correct
-        capturedOutput = io.StringIO()  # Create StringIO object
-        sys.stdout = capturedOutput  # and redirect stdout.
-        with open('dict.json', 'r') as f:
-            print(f.read())
-        self.assertTrue('{"name": "Queen", "of": "England"}' in capturedOutput.getvalue())
-       
-        self.assertTrue("<dictionary>" in capturedOutput.getvalue())
-        self.assertTrue("<programme>" in capturedOutput.getvalue())
-        sys.stdout = sys.__stdout__  # Reset stdout redirect.
+    def test_encrpyt(self):
+        '''
+        To test the serialisation process with no encrypt
+        '''
+        actual = no_encrypt(original)
+        expected = '{1: 'Queen', 2: 'of', 3: 'UK'}'
+        self.assertEqual(actual, expected,"serialise not successful")
+        print("serialise checked")
 
-        #cleanup files
-        os.remove("dict.json")
+    # def test_encrypt_input(self):
+    #     encrypt = 'a'
+    #     actual = 
+    #     expected = 'Please enter y or n'
+    #     if encrypt in ['y', 'n']:
+    #         return
+    #     else:
+    #         print('Please enter y or n')
+    #     self.assertEqual(actual, expected)
 
-if __name__ == '_main_':
-    unittest.main()        
-    
-print ("test ran successfully")
+    def test_encrypt_json_pickling(self):
+        '''
+        To test if the pickling choice returns a json type
+        '''
+        pickling_type = 'json'
+        if pickling_type == 'json':
+            file_str = str(json.dumps(original))
+        actual = file_str
+        expected = '{1: 'Queen', 2: 'of', 3: 'UK'}'
+        self.assertEqual(actual, expected, "pickling not successful")
+        print("pickling checked")
+
